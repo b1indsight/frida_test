@@ -68,7 +68,7 @@ def on_message(message, data):
         print(message)
 
 
-session = frida.get_usb_device().attach('Lazada')
+session = frida.get_device('socket').attach('Lazada')
 # 在目标进程里创建脚本
 script = session.create_script(js_get_hashmap_mtop_global)
 # 注册消息回调
