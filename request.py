@@ -54,7 +54,7 @@ def get_res(page):
                     var str2 = null
                     var z = false
                     
-                    var mtopConfig = Java.use('mtopsdk.mtop.global.MtopConfig').$new();
+                    var mtopConfig = Java.use('com.lazada.android.compat.network.a').a().getMtopConfig();
                     console.log(mtopConfig.ttid.value);
                     
 
