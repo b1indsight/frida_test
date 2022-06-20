@@ -64,16 +64,10 @@ def get_res(page):
                         "onComplete":function(){
                         }
                     })
-                
-                    var sign;
-                    Java.choose('mtopsdk.security.b', {
-                        "onMatch":function(instance){
-                            sign = instance.a(hashMap1, hashMap2, str, str2, z);
-                        },
-                        "onComplete":function(){
-                        }
-                    })
-                    var r = sign;
+
+                    var C26958b = Java.use("mtopsdk.security.b").$new();
+                    C26958b.a(mtopConfig);
+                    var r = C26958b.a(hashMap1, hashMap2, str, str2, z);
                     console.log(r)
                     console.log(hashMap1)
                     console.log(hashMap2)
