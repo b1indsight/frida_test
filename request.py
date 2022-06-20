@@ -130,6 +130,7 @@ def get_res(page):
     if response.ok:
         return response.json()
     else:
+        print(response.status_code)
         return ''
     
 
