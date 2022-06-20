@@ -54,16 +54,9 @@ def get_res(page):
                     var str2 = null
                     var z = false
                     
-                    var mtopConfig;
-                    Java.choose('mtopsdk.mtop.global.MtopConfig',{
-                        "onMatch":function(instance){
-                            mtopConfig = instance
-                            var mtopGlobalHeaders = instance.mtopGlobalHeaders;
-                            console.log(mtopConfig.ttid.value);
-                        },
-                        "onComplete":function(){
-                        }
-                    })
+                    var mtopConfig = Java.use('mtopsdk.mtop.global.MtopConfig').$new();
+                    console.log(mtopConfig.ttid.value);
+                    
 
                     var C26958b = Java.use("mtopsdk.security.b").$new();
                     C26958b.a(mtopConfig);
