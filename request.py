@@ -134,16 +134,11 @@ def get_res(page):
     
 
 def main():
-    max_page = 999
+    max_page = 10
     current_page = 1
     while current_page <= max_page:
         time.sleep(30)
         res = get_res(current_page)
-        tmp = res.get('data', {}).get('mainInfo', {}).get('totalResults', '')
-        if tmp.isdigit():
-            max_page = int(tmp) // 100 + 1
-        print(f'current page is {current_page}')
-        res['current_page'] = current_page
         print(res)
         current_page += 1
 
