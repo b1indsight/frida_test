@@ -132,7 +132,12 @@ def get_res(page):
         return response.json()
     else:
         if response.status_code == 419:
-            cookie = {}
+            cookie = {
+                'hng':'SG|en-SG|SGD|702', 
+                'lzd_cid': '21420601-2fe8-453c-9d6a-6c505712291d',
+                'cna': 'i0QLGziAJQsCAWVYp54fnk8r',
+                't_uid': generate_UUID()
+            }
             deal_slide(url, response.text, cookie, headers, {})
             response = requests.request("GET", url, headers=headers)
             return response.text
@@ -189,6 +194,19 @@ def deal_slide(url, content, cookie, headers, proxy):
         return
     if r.ok:
         cookie.update(r.cookies.get_dict())
+
+def generate_UUID():
+    def repl(match_object):
+        if match_object:
+            s = match_object.group(0)
+            t = int(time.time() * 1000)
+            r = int((t + random.random() * 16)) % 16 | 0
+            if s == 'x':
+                return hex(r)[-1]
+            else:
+                return hex((r & 0x7) | 0x8)[-1]
+    uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+    return re.sub(r'[xy]', repl, uuid)
 
 def main():
     max_page = 10
