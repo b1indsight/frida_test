@@ -139,10 +139,14 @@ def get_res(page):
                 'lzd_sid': '1313ad788bb335ff7693b91efd6446f0',
                 'cna': 'hakpG9GrkX8CAWVYp55r+p3d',
                 '_tb_token_': 'e3319a735e11e',
-                'I': 'eBPp6m2qL-msleiZBOfZnurza7yFSCOAguPzaNbMiOCPOHCB5_hcW6jqCPY6C3edhsNHR3u1-0XpBeYBYuE-nxvt4fpZ6fHmn',
+                'utm_channel': 'NA',
+                'I': 'eBPp6m2qL-mslhKkBOfahurza77OSCOYYuPzaNbMiOCPOI5B5r_1W6bjD3Y6C3Mdh6PXR3u1-0XpBeYBY3xonxvt4fpZ6fHmn',
                 't_uid': 'gVsEC1yhuXi9XqRTmrYtoLB01GJkyX1x',
-                'tfstk': 'c49PBsXpS2a5Y6BI6T6EVTLiDYxRanfd_Rj5ZVSKLNPq8X5c7sf_JiZGKGjT9vCl.',
-                'isg': 'BCMjFGv-RahaKgmc_jz_W5nHuW7NGLdatSrv9VWAfwL5lEO23ehHqgFFi3qaNA9S'
+                'tfstk': 'c1BVBNwhYPgjKWv_9K9ac_yFgSsAwcO9TvxXiyozUxlO4nf0PVKSxdxHvfe9i',
+                'xlly_s': '1',
+                '_m_h5_tk': 'f3d07f835d2d857a84ee161aa5dde173_1655813741127',
+                '_m_h5_tk_enc': '4a33a7c159319eaf90ee93e43afc8a9a',
+                'isg': 'BDY2XbTtSDBtYjxHawPCYJRQjGU4V3qRiB26jqAfIpm049Z9COfKoZyR_6GP0HKp'
             }
             deal_slide(url, response.text, cookie, headers, {})
             response = requests.request("GET", url, headers=headers)
