@@ -119,7 +119,7 @@ def get_res(page):
     'x-appkey': '23867946',
     #   'x-devid': deviceID,
     'user-agent': 'MTOPSDK%2F3.1.1.7+%28Android%3B9%3BGoogle%3BAOSP+on+IA+Emulator%29',
-    'Host': 'acs-m.lazada.sg'
+    'Host': 'acs-m.lazada.co.id'
     }
 
     url = url.format(urllib.parse.quote(data))
