@@ -6,6 +6,7 @@ import json
 import requests
 import urllib.parse
 import re
+import random
 
 def get_res(page):
     url = "https://acs-m.lazada.sg/gw/mtop.lazada.gsearch.appsearch/1.0/?data={}"
