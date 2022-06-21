@@ -134,10 +134,12 @@ def get_res(page):
     else:
         if response.status_code == 419:
             cookie = {
-                'hng':'SG|en-SG|SGD|702', 
+                'hng': 'SG|en-SG|SGD|702', 
                 'lzd_cid': '21420601-2fe8-453c-9d6a-6c505712291d',
                 'cna': 'i0QLGziAJQsCAWVYp54fnk8r',
-                't_uid': generate_UUID()
+                't_uid': generate_UUID(),
+                'tfstk': 'c1XGBjj6m-sWiJAhNR9_HBnx8ueRwQU65OXOLlJ59vTs6f1DwXlxiCqyrk2nG',
+                'isg': 'BMTEs5t0eiBzVs53-iW3HhYMnku23ehH7odo8N5lUA9SCWTTBu241_orTb_RCiCf'
             }
             deal_slide(url, response.text, cookie, headers, {})
             response = requests.request("GET", url, headers=headers)
