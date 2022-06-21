@@ -5,6 +5,7 @@ import time
 import json
 import requests
 import urllib.parse
+import re
 
 def get_res(page):
     url = "https://acs-m.lazada.sg/gw/mtop.lazada.gsearch.appsearch/1.0/?data={}"
@@ -130,9 +131,64 @@ def get_res(page):
     if response.ok:
         return response.json()
     else:
-        print(response.status_code)
+        if response.status_code == 419:
+            cookie = {}
+            deal_slide(url, response.text, cookie, headers, {})
+            response = requests.request("GET", url, headers=headers)
+            return response.text
         return ''
     
+def deal_slide(url, content, cookie, headers, proxy):
+    x5sec_data = re.search(r'"SECDATA":\s*"(.*?)"', content)
+    if x5sec_data:
+        x5sec_data = x5sec_data.group(1)
+    nctokenstr = re.search(r'NCTOKENSTR":\s*"(.*?)"', content)
+    if nctokenstr:
+        nctokenstr = nctokenstr.group(1)
+    ncappkey = re.search(r'NCAPPKEY":\s*"(.*?)"', content)
+    if ncappkey:
+        ncappkey = ncappkey.group(1)
+    data = {
+        'ua_name': 'Chrome',
+        'ua_version': '96.0',
+        'token': 'DLLNtU1bHZnZ2yFFe8W%2FgFYpgAJ25yQwJjqpZKAc97XSac5UmFr1Ly4T3fckVsQx0y3OPeCF1QpdZmCTXmyeoJSzK8l7ZfNVS7dzET%2FjMrXYxesPYs6qnBb6QIQwuDReoriHfPvi0hBcbse27K7DaSFnuUzXdiGU1uPi2u23DB4%3D',
+        'url': url.split("?")[0]
+    }
+    get_slide_data_url = "http://203.156.218.106:5000/get_slider_data_221?ua_name={}&ua_version={}&token={}&url={}".format(data["ua_name"], data["ua_version"], data["token"], data["url"])
+    try:
+        r = requests.get(get_slide_data_url, timeout=30)
+    except Exception as e:
+        # logger.info("get verify data failed, error {}".format(e))
+        return
+    tmp = {}
+    if r.ok:
+        try:
+            tmp = json.loads(r.text)
+        except Exception as e:
+            return
+    data = {
+        'a': ncappkey,
+        't': nctokenstr,
+        'n': tmp['n'],
+        'p': tmp['p'],
+        'scene': tmp['scene'],
+        'asyn': tmp['asyn'],
+        'lang':'zh-cn',
+        'v': 1
+    }
+    payload = {
+        'slidedata': urllib.parse.quote(json.dumps(data)),
+        'x5secdata': x5sec_data,
+        'v': tmp['jsonp']
+    }
+    slide_url = "{}/_____tmd_____/slide?slidedata={}&x5secdata={}&v={}".format(url.split("?")[0], payload["slidedata"], payload["x5secdata"], payload["v"])
+    try:
+        r = requests.get(slide_url, headers=headers, timeout=30, proxies=proxy)
+    except Exception as e:
+        # logger.info("get silde cookie failed, error {}".format(e))
+        return
+    if r.ok:
+        cookie.update(r.cookies.get_dict())
 
 def main():
     max_page = 10
