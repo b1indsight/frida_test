@@ -134,12 +134,15 @@ def get_res(page):
     else:
         if response.status_code == 419:
             cookie = {
-                'hng': 'SG|en-SG|SGD|702', 
-                'lzd_cid': '21420601-2fe8-453c-9d6a-6c505712291d',
-                'cna': 'i0QLGziAJQsCAWVYp54fnk8r',
-                't_uid': generate_UUID(),
-                'tfstk': 'c1XGBjj6m-sWiJAhNR9_HBnx8ueRwQU65OXOLlJ59vTs6f1DwXlxiCqyrk2nG',
-                'isg': 'BMTEs5t0eiBzVs53-iW3HhYMnku23ehH7odo8N5lUA9SCWTTBu241_orTb_RCiCf'
+                'hng': 'ID|en|IDR|360', 
+                'lzd_cid': '0bc727bf-4024-4bdf-dd0e-03d172b62bf0',
+                'lzd_sid': '1313ad788bb335ff7693b91efd6446f0',
+                'cna': 'hakpG9GrkX8CAWVYp55r+p3d',
+                '_tb_token_': 'e3319a735e11e',
+                'I': 'eBPp6m2qL-msleiZBOfZnurza7yFSCOAguPzaNbMiOCPOHCB5_hcW6jqCPY6C3edhsNHR3u1-0XpBeYBYuE-nxvt4fpZ6fHmn',
+                't_uid': 'gVsEC1yhuXi9XqRTmrYtoLB01GJkyX1x',
+                'tfstk': 'c49PBsXpS2a5Y6BI6T6EVTLiDYxRanfd_Rj5ZVSKLNPq8X5c7sf_JiZGKGjT9vCl.',
+                'isg': 'BCMjFGv-RahaKgmc_jz_W5nHuW7NGLdatSrv9VWAfwL5lEO23ehHqgFFi3qaNA9S'
             }
             deal_slide(url, response.text, cookie, headers, {})
             response = requests.request("GET", url, headers=headers)
