@@ -93,7 +93,7 @@ def get_res(page):
     now = str(int(time.time()))
     # now = '1654151812'
 
-
+    utd_id = script.exports.getutdid()
     deviceID = script.exports.getdeviceid()
 
     data = """{{"__original_url__":"https%3A%2F%2Fwww.lazada.sg%2Fshop-disposable-diapers%2F%3Fpos%3D7%26acm%3D201711220.1003.1.2873589%26scm%3D1003.1.201711220.OTHER_8757_2873589%26from%3Dlp_category%26searchFlag%3D1%26spm%3Da2o42.category.6.2_7","acm":"201711220.1003.1.2873589","adjustID":"32761049-ae2e-4d8a-911a-9ff988f11f50","deviceID":"{deviceID}","firstSearch":"true","from":"lp_category","latitude":"0.0","longitude":"0.0","n":"100","page":"{page}","rainbow":"1340,151,1444,1446,2,1540","scm":"1003.1.201711220.OTHER_8757_2873589","searchFlag":"1","speed":"35.31","spm":"a2o42.category.6.2_7","spm_pre":"a2o42.category.5.7","sversion":"6.2","ttid":"600000@lazada_android_7.0.0","sort":"order", "url_key":"shop-disposable-diapers/","userID":"","utd_id":"{utd_id}","vm":"nw"}}""".format(utd_id=utd_id, deviceID=deviceID, page=page)
