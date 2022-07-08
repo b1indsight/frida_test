@@ -9,7 +9,7 @@ import base64
 import logging
 from urllib.parse import quote, unquote
 
-logging.basicConfig(filename="lazada_sign.log", encoding="utf-8")
+logging.basicConfig(filename="lazada_sign.log")
 
 class frida_sign:
     JS_CODE = """
@@ -161,10 +161,8 @@ def main():
         if data:
             task_file = data.get("task_file", '')
             tmp = _sign(data.get("data", '{}'))
-            tmp['task_file'] = task_file
-            tmp['category'] = data.get("category", '')
-            tmp['proxy'] = data.get("proxy", '{}')
-            upload_data(tmp)
+            data.update(tmp)
+            upload_data(data)
         time.sleep(10)
 
 
