@@ -163,7 +163,6 @@ def main():
             tmp = _sign(data.get("data", '{}'))
             data.update(tmp)
             upload_data(data)
-        time.sleep(10)
 
 
 if __name__ == "__main__":
